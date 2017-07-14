@@ -80,23 +80,38 @@
     // test if a specific row on this board contains a conflict
     hasRowConflictAt: function(rowIndex) {
       var row = this.rows()[rowIndex];
-      var sum = row.reduce((accumulator, current) => accumulator + current);
-      if (sum > 1) {
-        return true;
+      var count = 0;
+
+      for ( var i = 0; i <row.length; i++ ) {
+        count +=row[i];
       }
-      return false;
+
+      return count > 1;
+      // var sum = row.reduce((accumulator, current) => accumulator + current);
+      // if (sum > 1) {
+      //   return true;
+      // }
+      // return false;
     },
 
     // test if any rows on this board contain conflicts
     hasAnyRowConflicts: function() {
-      var rowIndex = this.rows().length;
-      var result = [];
-      for (var i = 0; i < rowIndex; i++) {
+      var size = this.get('n');
+      for (var i = 0; i < size; i++) {
         if (this.hasRowConflictAt(i)) {
           return true;
         }
       }
+
       return false;
+      // var rowIndex = this.rows().length;
+      // var result = [];
+      // for (var i = 0; i < rowIndex; i++) {
+      //   if (this.hasRowConflictAt(i)) {
+      //     return true;
+      //   }
+      // }
+      // return false;
     },
 
 
